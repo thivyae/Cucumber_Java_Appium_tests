@@ -1,0 +1,4 @@
+[caps]
+platformName = "android"
+app = "/Users/thivyalakshmieaswarasekaran/Desktop/Qbo_tests/src/apps/qbo-ci-release.apk"
+deviceName = "Android Phone"
