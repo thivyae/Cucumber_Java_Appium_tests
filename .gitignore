@@ -3,4 +3,5 @@
 /target/
 /lib
 apps/
+/Qbo_tests/src/test/java/step_definitions/Hooks.java
 
