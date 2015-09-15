@@ -18,7 +18,7 @@ public class CreateRecipe  {
 	 @Given("^I login to app and land on home page$")
 	    public void open_app() throws Throwable {
 		 System.out.println("inside given");
-	       assertThat(createRecipePage.getPageTitle()).isEqualTo("Hello, Coffee Lover!");
+	       assertThat(createRecipePage.getPageTitle()).isEqualTo("Drinks");
 	    }
 	 
 	 @When("^I tap on create new recipe tile$")
@@ -31,7 +31,7 @@ public class CreateRecipe  {
 	 @Then("^I should be taken to customize recipe page$")
 	 public void i_should_be_taken_to_customize_recipe_page() throws Throwable {
 		 System.out.println("inside thne");
-		 assertThat(customizeRecipePage.getPageTitle()).isEqualToIgnoringCase("Start With…");
+		 assertThat(customizeRecipePage.getPageTitle()).isEqualToIgnoringCase("Recipes");
 	 }
     
 };

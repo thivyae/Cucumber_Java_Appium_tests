@@ -18,11 +18,11 @@ public class CreatRecipePage extends Exception{
 
 	
 	public void tapOnCreateRecipeTile() {
-		driver.findElement(By.id("create_new_recipe")).click();
+		driver.findElement(By.id("de.luna.qbo.ci:id/recipe_add_symbol")).click();
 		};
 
 	public String getPageTitle(){
-	return driver.findElement(By.id("title_activity_home")).getText();
+	return driver.findElement(By.id("drinks")).getText();
 	}
 
 }

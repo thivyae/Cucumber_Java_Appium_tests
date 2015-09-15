@@ -17,7 +17,7 @@ public class CustomizeRecipePage extends Exception{
 	}
 
 	public String getPageTitle(){
-	return driver.findElement(By.id("start_with")).getText();
+	return driver.findElement(By.id("recipes")).getText();
 	}
 
 }
