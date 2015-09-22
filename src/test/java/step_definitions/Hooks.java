@@ -39,7 +39,7 @@ public class Hooks {
 		capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
 		capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "4.4");
 		capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Android Emulator");
-		capabilities.setCapability(MobileCapabilityType.APP, "{{Local path}}/Qbo_tests/src/apps/qbo-ci-release.apk");
+		capabilities.setCapability(MobileCapabilityType.APP, "/Users/thivyalakshmieaswarasekaran/Desktop/Qbo_tests/src/apps/qbo-ci-release.apk");
 
         
         
