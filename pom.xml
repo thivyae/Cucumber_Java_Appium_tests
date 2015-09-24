@@ -2,11 +2,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>Qbo-Functional-Tests</groupId>
+    <groupId>Cucumber_Java_Appium_tests</groupId>
     <artifactId>cucumber-java-Junit-</artifactId>
     <version>0.0.1</version>
     <packaging>jar</packaging>
-    <name>Qbo tests</name>
+    <name>Cucumber_Java_Appium_tests</name>
 
     <dependencies>
         <dependency>
@@ -97,7 +97,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <projectName>Qbo tests</projectName>
+                            <projectName>Cucumber_Java_Appium_tests</projectName>
                             <outputDirectory>target/cucumber-html-reports</outputDirectory>
                             <cucumberOutput>target/cucumber-report.json</cucumberOutput>
                             <enableFlashCharts>false</enableFlashCharts>
