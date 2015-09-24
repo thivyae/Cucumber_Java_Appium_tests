@@ -1,7 +1,7 @@
-# Qbo_tests
-# Qbo_tests
+# Cucumber_Java_Appium_tests
+# Cucumber_Java_Appium_tests
 
-Qbo tests is a java test automation framework for Qbo android app project
+Cucumber Java Appium tests is a java test automation framework for mobile android app 
 
 
 Spesc:
