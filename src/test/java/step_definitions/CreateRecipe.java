@@ -21,31 +21,27 @@ public class CreateRecipe  {
 	
 	 @Given("^I open the app and land on home screen$")
 	    public void open_app() throws Throwable {
-		 System.out.println("inside given");
 	       assertThat(createRecipePage.getPageTitle()).isEqualTo("Drinks");
 	    }
 	 
 	 @When("^I touch on create new recipe button$")
 	 public void goTonCreateNewRecipe() throws Throwable{
-		 
-		System.out.println("inside when");
-		createRecipePage.tapOnCreateRecipeTile();
+		 createRecipePage.tapOnCreateRecipeTile();
 	 }
 	 
-	 @Then("^I should see the ten default recipes$")
-	 public void getDefaultRecipes() throws Throwable{
-		 System.out.println("inside mtd");
-		 
+	 @Then("^create recipe tab should be open by default$")
+	 public void create_recipe_tab_should_be_open_by_default() throws Throwable {
+		 assertThat(createRecipePage.isCreateRecipeTabOpen()).isTrue();
 	 }
+	   
 	
-	 @Then("^I should be taken to customize recipe page$")
-	 public void i_should_be_taken_to_customize_recipe_page() throws Throwable {
+	 @Then("^I should see the ten default recipes$")
+	 public void i_should_be_taken_to_customize_recipe_page(List<String> recipes) throws Throwable {
 		 ArrayList<String> expectedRecipeList = new ArrayList<String>();
-		 System.out.println("inside thne");
+		 expectedRecipeList.addAll(recipes);
 		 assertThat(customizeRecipePage.getPageTitle()).isEqualToIgnoringCase("Recipes");
 		 ArrayList<String> actualRecipeList=new ArrayList<String>();
 		  actualRecipeList= customizeRecipePage.getRecipeNames();
 		 assertThat(actualRecipeList).containsAll(expectedRecipeList);
 		 }
-    
-};
+    };

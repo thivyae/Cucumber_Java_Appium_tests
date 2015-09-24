@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import io.appium.java_client.MobileDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 
@@ -15,8 +16,10 @@ import org.openqa.selenium.WebElement;
 import step_definitions.Hooks;
 
 public class CustomizeRecipePage extends Exception{
-	public WebDriver driver; 
-	ArrayList<String> list = null;
+	public MobileDriver driver; 
+	BasePage basePage=new BasePage();
+	
+	ArrayList<String> list = new ArrayList<String>();
 	public CustomizeRecipePage() 
 	{ 
 	driver = Hooks.driver; 
@@ -32,37 +35,26 @@ public class CustomizeRecipePage extends Exception{
 		}
 	
 	public ArrayList<String> getRecipeNames(){
-		ArrayList<String> recipeList = null;
-		String expectedLastDesc = "Iced Latte Macchiato Caramello";
+		ArrayList<String> recipeList = new ArrayList<String>();
+		String expectedLastDesc = "Latte Macchiato poured over ice cubes and yummy caramel syrup, brewed with cold milk and froth, to satisfy your sweet tooth.";
 		String foundLastDesc = null;
-		while (foundLastDesc!=expectedLastDesc) {
+		while (!expectedLastDesc.equalsIgnoreCase(foundLastDesc)) {
 			List<WebElement> recipes= driver.findElements(By.id("de.luna.qbo.ci:id/recipe_name"));
-			
-			
+			List<WebElement> recipesDesc = driver.findElements(By.id("de.luna.qbo.ci:id/recipe_description"));
+			 recipes.addAll(recipesDesc);
 			 recipeList = getRecipeList(recipes);
 			int recipeListSize = recipeList.size();
 			foundLastDesc = recipeList.get(recipeListSize-1);
-			System.out.println(recipeList);
-			
-//			List<WebElement> recipeDesc= driver.findElements(By.id("de.luna.qbo.ci:id/recipe_description"));
-//			ArrayList<String> recipeNames = convertToList(recipes);
-////			convertToList(recipeDesc);
-//			return recipeNames;
-		}
-		
+			basePage.scrollDown(driver);
+			}
 		return recipeList;
 	}
 	
 	public ArrayList<String> getRecipeList(List<WebElement> element){
 		
 		for (WebElement webElement : element) {
-			System.out.println("Recipes"+element);
-			System.out.println("Element::"+webElement.getText());
 			String text=webElement.getText();
-			System.out.println(text);
 			list.add(text);
-			System.out.println("after lost");
-			System.out.println("list"+list);
 		}
 		return list;
 	}

@@ -26,27 +26,13 @@ public class Hooks {
 
 	@Before
 	public void setUp() throws Exception {
-		
-		System.out.println("insidde before hooks");
-//        DesiredCapabilities capabilities = new DesiredCapabilities();
-//        capabilities.setCapability("appium-version", "1.1.0");
-//        capabilities.setCapability("platformName", "Android");
-//        capabilities.setCapability("deviceName", "Android");
-//        capabilities.setCapability("platformVersion", "4.4");
-//        capabilities.setCapability("appPackage", "/Qbo_tests/src/apps/qbo-ci-release.apk");
-		
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
 		capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "4.4");
 		capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Android Emulator");
 		capabilities.setCapability(MobileCapabilityType.APP, "/Users/thivyalakshmieaswarasekaran/Desktop/Qbo_tests/src/apps/qbo-ci-release.apk");
-
-        
-        
-        try {
+ try {
         	driver = new AndroidDriver<AndroidElement>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
-        	
-        	System.out.println(driver);
 		} catch (Exception e) {
 			System.out.println(e);
 			// TODO: handle exception
@@ -55,38 +41,30 @@ public class Hooks {
 	};
 	
 	
-	
-	@After
-	 public void embedScreenshot() {
-		System.out.println("insidde after hooks");
-//         if (scenario.isFailed()) {  
-////             try {  
-////                 byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);  
-////                 scenario.embed(screenshot, "image/png");  
-////             } catch (WebDriverException wde) {  
-////                 System.err.println(wde.getMessage());  
-////             } catch (ClassCastException cce) {  
-////                 cce.printStackTrace();  
-////             }  
-         
-        	 //make screenshot and get is as base64
-             WebDriver augmentedDriver = new Augmenter().augment(driver);
-             String screenshot = ((TakesScreenshot) augmentedDriver).getScreenshotAs(OutputType.BASE64);
-
-             assert (screenshot) != null;
-             
-             //make screenshot and save it to the local filesystem
-             File file = ((TakesScreenshot) augmentedDriver).getScreenshotAs(OutputType.FILE);
-             assert (file) != null;
-             
-         
-         
-         //}  
+	 public void embedScreenshot(Scenario scenario) {
+		try{
+			WebDriver augmentedDriver = new Augmenter().augment(driver);
+			byte[] screenshot=((TakesScreenshot) augmentedDriver).getScreenshotAs(OutputType.BYTES);
+			scenario.embed(screenshot,"image/png");
+		}catch(WebDriverException somWebDriverException){
+			System.err.println(somWebDriverException.getMessage());
+		}
+//             WebDriver augmentedDriver = new Augmenter().augment(driver);
+//             String screenshot = ((TakesScreenshot) augmentedDriver).getScreenshotAs(OutputType.BASE64);
+//             assert (screenshot) != null;
+//             File file = ((TakesScreenshot) augmentedDriver).getScreenshotAs(OutputType.FILE);
+//             assert (file) != null;
      }  
 	@After
-	public void tearDown() throws Exception{
+	public void tearDown(Scenario scenario) throws Exception{
 		
-	        if (driver != null) driver.quit();
-	    
-	}
+		if (driver != null) 
+	        {
+			if(scenario.isFailed()){
+				embedScreenshot(scenario);
+			}
+			System.out.println("quitting");
+	        	driver.quit();
+	        }
+	   }
 };

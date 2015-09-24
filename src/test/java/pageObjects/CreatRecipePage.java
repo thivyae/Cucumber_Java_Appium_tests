@@ -24,5 +24,9 @@ public class CreatRecipePage extends Exception{
 	public String getPageTitle(){
 	return driver.findElement(By.id("drinks")).getText();
 	}
+	
+	public boolean isCreateRecipeTabOpen(){
+		return driver.findElement(By.id("de.luna.qbo.ci:id/recipe_add_symbol")).isEnabled();
+		}
 
 }
