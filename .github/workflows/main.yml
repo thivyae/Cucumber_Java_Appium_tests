@@ -19,8 +19,8 @@ jobs:
       
     - name: Run the Emulator
       run: | 
-       chmod +x ./scripts/emulator-up.sh
-       ./scripts/emulator-up.sh       
+       chmod +x ./scripts/RunAppiumServer.sh
+       ./scripts/RunAppiumServer.sh       
       shell: bash
     
     - name: Run UI tests
